@@ -11,47 +11,44 @@ import (
 	"github.com/goccy/go-yaml"
 )
 
-// loadYamlFromURL is a sub-function of loadYaml for HTTP only. It takes a URL as a sourcePath and a pointer to a Catalog object.
-func loadYamlFromURL(sourcePath string, data *Catalog) error {
-	resp, err := http.Get(sourcePath)
+// decodeYAMLFromReader decodes YAML from an io.Reader into the provided target.
+func decodeYAMLFromReader(reader io.Reader, target interface{}) error {
+	decoder := yaml.NewDecoder(reader, yaml.DisallowUnknownField())
+	if err := decoder.Decode(target); err != nil {
+		return fmt.Errorf("error decoding YAML: %w", err)
+	}
+	return nil
+}
+
+// decodeYAMLFromURL fetches a URL and decodes YAML into the provided target.
+func decodeYAMLFromURL(sourceURL string, target interface{}) error {
+	resp, err := http.Get(sourceURL)
 	if err != nil {
 		return fmt.Errorf("failed to fetch URL: %v", err)
 	}
-	defer func() {
-		_ = resp.Body.Close()
-	}()
-
+	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("failed to fetch URL; response status: %v", resp.Status)
 	}
+	return decodeYAMLFromReader(resp.Body, target)
+}
 
-	err = decode(resp.Body, data)
+// decodeYAMLFromFile opens a file and decodes YAML into the provided target.
+func decodeYAMLFromFile(filePath string, target interface{}) error {
+	file, err := os.Open(filePath)
 	if err != nil {
-		return fmt.Errorf("failed to decode YAML from URL: %v", err)
+		return fmt.Errorf("error opening file: %w", err)
 	}
-	return nil
+	defer file.Close()
+	return decodeYAMLFromReader(file, target)
 }
 
 // loadYaml opens a provided path to unmarshal its data as YAML. It takes a URL or local path to a file as a sourcePath and a pointer to a Catalog object.
 func loadYaml(sourcePath string, data *Catalog) error {
 	if strings.HasPrefix(sourcePath, "http") {
-		return loadYamlFromURL(sourcePath, data)
+		return decodeYAMLFromURL(sourcePath, data)
 	}
-
-	file, err := os.Open(sourcePath)
-	if err != nil {
-		return fmt.Errorf("error opening file: %w", err)
-	}
-
-	defer func() {
-		_ = file.Close()
-	}()
-
-	err = decode(file, data)
-	if err != nil {
-		return fmt.Errorf("error decoding YAML: %w (%s)", err, sourcePath)
-	}
-	return nil
+	return decodeYAMLFromFile(sourcePath, data)
 }
 
 // loadJson opens a provided path to unmarshal its data as JSON. It takes a URL or local path to a file as a sourcePath and a pointer to a Catalog object.
