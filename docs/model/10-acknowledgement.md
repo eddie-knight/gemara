@@ -13,5 +13,5 @@ As mentioned throughout this document, the text herein draws from a myriad of le
 
 **Notable Influences:** Ian Miell, Michaela Iorga, Tara Houlden, Ben Cotton, Christopher Robinson, Evan Anderson, Maxime Coquerel, David Wheeler, Kamran Kazmi, Ian Tivey, Dana Wang, Jeff Diecks
 
-- **< Previous Page**: [Conclusion](./9-conclusion)
+- **< Previous Page**: [Conclusion](./09-conclusion)
 - **> Continue Reading**: [The Gemara Schema](../schema/)
