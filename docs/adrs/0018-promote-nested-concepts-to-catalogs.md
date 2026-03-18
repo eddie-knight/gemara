@@ -4,7 +4,7 @@ title: Promote Nested Concepts to First-class Catalogs
 ---
 
 - **ADR:** 0018
-- **Proposal Author(s):** @eddie-knight, @jpower432
+- **Proposal Author(s):** @eddie-knight
 - **Status:** Rejected
 
 ## Context
