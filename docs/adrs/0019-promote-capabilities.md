@@ -5,7 +5,7 @@ title: Promote Capabilities to a First-class Catalog
 
 - **ADR:** 0019
 - **Proposal Author(s):** @eddie-knight, @jpower432
-- **Status:** Proposed
+- **Status:** Accepted
 
 ## Context
 
