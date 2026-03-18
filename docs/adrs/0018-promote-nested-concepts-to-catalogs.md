@@ -43,7 +43,7 @@ This proposal was rejected because we do not anticipate strong cross-document re
 ## Consequences
 
 - **No new top-level catalog types** are introduced for Groups and Risk Categories; these organizational groupings remain defined within the documents that use them.
-- **Capabilities are explicitly out of scope for this ADR** and are handled as a standalone proposal in [ADR 0019](./0019-promote-capabilities.md).
+- **Capabilities** as a new catalog will be considered in a follow-up proposal.
 
 ## Alternatives Considered
 
