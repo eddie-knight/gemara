@@ -5,7 +5,7 @@ title: New schema for Lexicon artifacts
 
 - **ADR:** 0021
 - **Proposal Author(s):** @eddie-knight
-- **Status:** Proposed
+- **Status:** Accepted
 
 ## Context
 
