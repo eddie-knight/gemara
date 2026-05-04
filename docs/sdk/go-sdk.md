@@ -117,22 +117,9 @@ unpacked, _ := bundle.Unpack(ctx, repo, "v1.0.0")
 _ = unpacked
 ```
 
-## CLI: `oscalexport`
+## Developer Tooling
 
-The repository also ships an `oscalexport` command that converts Gemara documents to OSCAL without writing any Go.
-
-```bash
-# Build
-make build
-
-# Convert a Control Catalog
-./bin/oscalexport catalog ./path/to/catalog.yaml --output ./catalog.json
-
-# Convert a Guidance Catalog (emits an OSCAL Catalog and Profile)
-./bin/oscalexport guidance ./path/to/guidance.yaml \
-    --catalog-output ./guidance.json \
-    --profile-output ./profile.json
-```
+The SDK repository also includes two binaries — `oscalexport` and `typestagger` — that exist as test and development infrastructure for SDK maintainers, not as supported end-user CLIs. `oscalexport` is used to regenerate OSCAL fixtures from the bundled test catalogs (`make oscal-export`), and `typestagger` post-processes generated Go types after `make generate`. See the [`go-gemara` repository](https://github.com/gemaraproj/go-gemara) for usage in a development workflow.
 
 ## Relationship to Other Components
 
