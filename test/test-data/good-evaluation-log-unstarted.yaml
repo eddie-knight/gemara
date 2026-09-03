@@ -6,11 +6,13 @@ metadata:
   description: Evaluation log containing assessments that never executed
   author:
     id: pvtr
+    organization: openssf
     name: PVTR
     type: Software
 result: Needs Review
 target:
   id: github-repo
+  organization: xorg
   name: GitHub Repository
   type: Software
 evaluations:

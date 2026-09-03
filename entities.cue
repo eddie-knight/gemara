@@ -8,8 +8,12 @@ package gemara
 
 // Entity represents a human or tool
 #Entity: {
-	// id uniquely identifies the entity and allows this entry to be referenced by other elements
+	// id uniquely identifies the entity and allows this entry to be referenced by other elements.
 	id: string
+
+	// organization is the machine-readable identifier of the organization that owns or operates this entity.
+	// May be used in tandem with id to refine the findability of the entity.
+	organization?: string
 
 	// name is the name of the entity
 	name: string
